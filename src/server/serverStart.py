@@ -8,6 +8,12 @@ from src.appLayer.Gematry import Gematry
 from src.appLayer.HebrewGematry import HebGematry
 from src.server.response import Response
 
+<<<<<<< HEAD:src/server/serverStart.py
+=======
+from Gematry import Gematry
+from HebrewGematry import HebGematry
+from python.server.response import Response
+>>>>>>> cd9bb90 (Reformat):python/server/serverStart.py
 
 app = Flask(__name__, static_folder='static', static_url_path='')
 
