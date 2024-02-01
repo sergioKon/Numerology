@@ -8,7 +8,6 @@ class Gematry:
         self.month = date[5:7]
         self.year = date[0:4]
 
-#
     def dateToCode(self):
         result = self.halfWay(self.day)
         result = result + self.halfWay(self.month)
