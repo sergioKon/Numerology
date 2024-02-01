@@ -1,6 +1,6 @@
 from pyluach import dates
 
-from Numerology.Gematry import Gematry as Base
+from python.appLayer.Gematry import Gematry as Base
 
 
 class HebGematry(Base):

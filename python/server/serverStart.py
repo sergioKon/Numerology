@@ -1,9 +1,9 @@
 from flask import request, Flask
 from pyluach.dates import HebrewDate
 
-from Numerology.Gematry import Gematry
-from Numerology.HebrewGematry import HebGematry
-from Numerology.response.response import Response
+from python.appLayer.Gematry import Gematry
+from python.appLayer.HebrewGematry import HebGematry
+from python.server.response import Response
 
 app = Flask(__name__, static_folder='static', static_url_path='')
 
@@ -15,7 +15,7 @@ def hello_world():
 
 @app.route('/userData')
 def userData():
-    text_file = open("static/index.html", "r")
+    text_file = open("../web/index.html", "r")
     data = text_file.read()
     text_file.close()
     return data
