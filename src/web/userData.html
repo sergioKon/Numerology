@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Add React -- in One Minute</title>
+  </head>
+  <body>
+
+    <h2>Add  React in One Minute</h2>
+    <p>This page demonstrates using React with no build tooling.</p>
+    <p>React is loaded as a script tag.</p>
+
+    <form name="calculator" id="calculator" action="/calculate" method="post">
+    
+      <div id="hebrew">
+        <label for="HebrewName">שם עברי :</label>
+        <input id="HebrewName" name="HebrewName" type="text" value="" />
+
+        <label for="birthday">תאריך לידע לאוזי:</label>
+        <input id="birthday" name="birthday" type="date"  placeholder="yyyy-dd-mm" value="11-01-1970" />
+
+        <label for="birthday">תאריך לידע עברי:</label>
+        <input id="birthday" name="birthday" type="text"  readonly="true" placeholder="yyyy-dd-mm"  />
+
+      </div>
+      <input type="submit" value="Submit">
+    </form>
+  </body>
+</html>

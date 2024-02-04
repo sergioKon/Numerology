@@ -11,10 +11,9 @@ from src.server.response import Response
 
 app = Flask(__name__, static_folder='static', static_url_path='')
 
-@app.route('/userData')
+@app.route('/userData', methods=['POST'])
 def userData():
-
-    htmlPath= os.getcwd() + "/src/web/" + 'index.html'
+    htmlPath= os.getcwd() + "/src/web/" + 'userData.html'
     text_file = open(htmlPath, "r")
     data = text_file.read()
     text_file.close()
