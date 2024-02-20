@@ -1,4 +1,4 @@
-from pyluach import dates
+from pyluach import dates as HebrewDate, hebrewcal
 
 from src.appLayer.Gematry import Gematry as Base
 
@@ -12,7 +12,7 @@ class HebGematry(Base):
         self.nameCode = None
         self.name = name
         super().__init__(date,name)
-        gredDate = dates.GregorianDate(int(self.year), int(self.day), int(self.month))
+        gredDate = HebrewDate.GregorianDate(int(self.year), int(self.day), int(self.month))
         self.date = gredDate.to_heb()
 
         self.day = self.date.day
@@ -40,7 +40,10 @@ class HebGematry(Base):
     def show(self):
         print(" gematry by date  = ", self.dateCode)
         print(" gematry by name  = ", self.nameCode)
-
+   
+    @staticmethod
+    def dateToText(date : HebrewDate):
+        hebrewcal.hebrew_date_string(True)
 '''
 hebGematry = HebGematry("11/01/1970", "בוריס פיין ")
 hebGematry.convertName()

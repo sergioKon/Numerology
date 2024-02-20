@@ -15,6 +15,7 @@ class Gematry:
         if result > 9:
             result = self.halfWay(result)
         self.dateCode = result
+        return result
 
     def halfWay(self, number : int):
         remainder = int(number)

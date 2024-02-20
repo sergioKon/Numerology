@@ -7,17 +7,22 @@ sys.path.insert(0, os.getcwd())
 from src.appLayer.Gematry import Gematry
 from src.appLayer.HebrewGematry import HebGematry
 from src.server.response import Response
-
+import traceback 
 
 app = Flask(__name__, static_folder='static', static_url_path='')
 
-@app.route('/userData', methods=['POST'])
+@app.route('/userData', methods=['GET'])
 def userData():
-    htmlPath= os.getcwd() + "/src/web/" + 'userData.html'
-    text_file = open(htmlPath, "r")
-    data = text_file.read()
-    text_file.close()
-    return data
+    htmlFile= 'userData.html'
+    try:
+        htmlPath= os.getcwd() + "/src/web/" + htmlFile
+        text_file = open(file= htmlPath,mode= "r", encoding='UTF-8')
+        data = text_file.read()
+        text_file.close()
+        return data
+    except:
+        traceback.print_exc() 
+        return "can't read file  " + htmlPath
     # return app.send_static_file('galaxy.html')
 
 
@@ -27,18 +32,19 @@ def calculate():
         birthday = request.form.get("birthday")
         englishName = request.form.get("EnglishName")
         gematry = Gematry(birthday, englishName)
-        gematry.dateToCode()
-        dateCode = gematry.dateCode
+        
+        englishDateCode = gematry.dateToCode()
         hebrew = request.form.get("HebrewName")
 
-        heb_gematry = HebGematry(birthday, hebrew)
-        hebDateCode = heb_gematry.dateCode
-        hebNameCode = heb_gematry.nameCode
+        hebGematry = HebGematry(birthday, hebrew)
+        hebDateCode = hebGematry.dateCode
+        hebDate= hebGematry.date
+        hebNameCode = hebGematry.nameCode
 
-        response = Response(hebNameCode, dateCode,hebDateCode)
-        resp  = response.toString()
-        return resp
+        response = Response(birthday, englishDateCode, hebDate, hebDateCode)
+        return  response.toString()
     except:
+        traceback.print_exc() 
         return "invalid input"
 
 port_number = 5000
