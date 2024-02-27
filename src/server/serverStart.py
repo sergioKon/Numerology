@@ -1,4 +1,5 @@
-from flask import request, Flask
+from flask import request, Flask,  render_template 
+
 from pyluach.dates import HebrewDate
 import sys, os 
 
@@ -9,22 +10,15 @@ from src.appLayer.HebrewGematry import HebGematry
 from src.server.response import Response
 import traceback 
 
-app = Flask(__name__, static_folder='static', static_url_path='')
+app=Flask(__name__,template_folder='../web/')
+
+@app.route("/index") 
+def hello(): 
+    return render_template('index.html') 
 
 @app.route('/userData', methods=['GET'])
 def userData():
-    htmlFile= 'userData.html'
-    try:
-        htmlPath= os.getcwd() + "/src/web/" + htmlFile
-        text_file = open(file= htmlPath,mode= "r", encoding='UTF-8')
-        data = text_file.read()
-        text_file.close()
-        return data
-    except:
-        traceback.print_exc() 
-        return "can't read file  " + htmlPath
-    # return app.send_static_file('galaxy.html')
-
+    return render_template('userData.html') 
 
 @app.route('/calculate', methods=['POST'])
 def calculate():
@@ -39,15 +33,15 @@ def calculate():
         hebGematry = HebGematry(birthday, hebrew)
         hebDateCode = hebGematry.dateCode
         hebDate= hebGematry.date
-        hebNameCode = hebGematry.nameCode
-
-        response = Response(birthday, englishDateCode, hebDate, hebDateCode)
-        return  response.toString()
+        
+        result = Response(birthday, englishDateCode, hebDate, hebDateCode)
+        return render_template('result.html') 
     except:
         traceback.print_exc() 
         return "invalid input"
-
-port_number = 5000
-
+if(len(sys.argv)==1 ):
+   port_number = 5000
+else: 
+    port_number = sys.argv[1]
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=port_number)

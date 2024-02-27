@@ -1,0 +1,60 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>view results</title>
+    <style>
+      table, tr, td {
+        direction: rtl;
+        border: 2px solid  blue;
+        border-collapse: collapse;
+      }
+      th, td {
+         background-color: #96D4D4;
+      }
+                ul.navigation {
+                margin: 10;
+                padding: 2px;
+                }
+                ul.navigation li {
+                display: inline;
+                margin-right: 5px;
+                }
+         
+      </style>
+      </head>
+  </head>
+  <body>
+   <div> 
+      <table>
+        <tr>
+          <td>תאריך לועזי </td>
+          <td>תוצאה </td>
+        </tr>
+        <tr>
+          <td>{{englishDate}} </td>
+          <td align="center">{{englishResult}} </td>
+        </tr>
+      </table>
+      <br>
+      <table>
+        <tr>
+          <td>תאריך עברי  </td>
+          <td>תוצאה </td>
+        </tr>
+        <tr>
+          <td>{{hebrewDate}} </td>
+          <td align="center">{{hebResult}} </td>
+          </tr>
+      </table>  
+   </div>
+    
+   <br>
+     <div>
+        <table style="border-radius: 5px; background-color: grew;">
+          <td style="width: 70px;">הפרש</td>
+          <td style="width: 35px;" align="center">{{delta}}</td>
+        </table>
+     </div>
+     
+  </body>
+</html>
